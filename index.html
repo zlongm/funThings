@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundo Depressivo com Imagem</title>
+    <style>
+        /* Definindo o fundo escuro e uma sensação de neblina */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.8), rgba(34, 34, 34, 1));
+            color: white;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Efeito de neblina */
+        ::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: -1;
+        }
+
+        /* Estilo do texto */
+        .message {
+            font-size: 3em;
+            text-align: center;
+            color: #ddd;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7), 0 0 25px rgba(0, 0, 0, 0.7);
+            max-width: 80%;
+            line-height: 1.4;
+            animation: fadeInText 4s ease-in-out;
+        }
+
+        /* Estilo da imagem */
+        .image {
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            opacity: 0; /* Começa invisível */
+            animation: fadeInImage 15s ease-in-out forwards; /* Animação de fade-in para a imagem */
+        }
+
+        /* Animação de fade-in para o texto */
+        @keyframes fadeInText {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animação de fade-in para a imagem */
+        @keyframes fadeInImage {
+            0% {
+                opacity: 0;
+                transform: translateY(50);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(50);
+            }
+        }
+
+        /* Um toque adicional no cursor */
+        body {
+            cursor: url('https://cdn-icons-png.flaticon.com/512/1995/1995481.png'), auto;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Texto com animação -->
+    <div class="message">
+        Sr. Arquiteto olha Só !!! Consegui uma Página já!! mal posso esperar para começar já a trabalhar!
+    </div>
+
+    <!-- Imagem com animação fade-in -->
+    <img src="foto.png" alt="Imagem com fade-in" class="image">
+
+</body>
+</html>
