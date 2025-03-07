@@ -767,5 +767,29 @@ element.style.transition = 'opacity 0.3s ease-in-out';
 });
 });
 </script>
+<div id="fullscreenImage" class="fixed inset-0 bg-transparent z-50 hidden items-center justify-center">
+<img src="https://static.readdy.ai/image/58cbac31950c45f7447b9aa6412aabaa/e5b5d9a78beccec6832fe52a1385d1e2.png" class="max-w-full max-h-full object-contain animate-spin" style="animation-duration: 10s;" alt="Fullscreen Image">
+</div>
+<style>
+@keyframes spin {
+from {
+transform: rotate(0deg);
+}
+to {
+transform: rotate(360deg);
+}
+}
+.animate-spin {
+animation: spin 10s linear infinite;
+}
+</style>
+<script>
+setTimeout(() => {
+  document.getElementById('fullscreenImage').classList.replace('hidden', 'flex');
+  setTimeout(() => {
+    document.getElementById('fullscreenImage').classList.replace('flex', 'hidden');
+  }, 20000);
+}, 20000);
+</script>
 </body>
 </html>
