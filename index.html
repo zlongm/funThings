@@ -194,7 +194,7 @@ setTimeout(() => notification.remove(), 500);
 <header class="bg-white shadow-sm p-4 flex items-center justify-between">
 <div class="flex items-center gap-4">
 <div class="relative">
-<input type="text" placeholder="Pesquisar autocarro..." class="pl-10 pr-4 py-2 rounded-button border-gray-200 text-sm">
+<input type="text" placeholder="Pesquisar autocarro..." class="pl-10 pr-4 py-2 rounded-button border-gray-200 text-sm" onkeyup="searchBus(this.value)">
 <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
 </div>
 </div>
@@ -215,7 +215,7 @@ setTimeout(() => notification.remove(), 500);
 <i class="ri-error-warning-line text-yellow-500"></i>
 </div>
 <div>
-<p class="text-sm">Manutenção preventiva necessária - Ônibus #1234</p>
+<p class="text-sm">Manutenção preventiva necessária - Ônibus #1</p>
 <span class="text-xs text-gray-500">Há 5 minutos</span>
 </div>
 </div>
@@ -256,7 +256,8 @@ Marcar todas como lidas
 </div>
 </header>
 <div class="flex-1 p-4 flex gap-4">
-<div class="flex-1 bg-white rounded-lg shadow-sm overflow-hidden">
+<div class="flex-1 flex flex-col gap-4">
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
 <div class="h-full relative">
 <div class="map-container transition-all duration-300">
 <img src="https://public.readdy.ai/gen_page/map_placeholder_1280x720.png" class="w-full h-full object-cover" alt="Mapa">
@@ -266,58 +267,7 @@ Marcar todas como lidas
 </div>
 </div>
 </div>
-<div class="w-80 flex flex-col gap-4">
-<div class="bg-white rounded-lg shadow-sm p-4">
-<h2 class="text-lg font-semibold mb-4">Monitoramento em Tempo Real</h2>
-<div class="space-y-4 custom-scrollbar max-h-[400px] overflow-y-auto" style="transition: all 0.3s ease-in-out">
-<div class="p-3 border rounded-lg flex items-center gap-3 cursor-pointer hover:bg-gray-50" onclick="showBusDetails(1234)">
-<div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
-<i class="ri-bus-line text-green-500"></i>
-</div>
-<div class="flex-1">
-<h3 class="font-medium">Autocarro #1234</h3>
-<p class="text-sm text-gray-500">Linha 1 - Em movimento</p>
-</div>
-<div class="text-right">
-<span class="text-green-500 text-sm">40 km/h</span>
-<p class="text-xs text-gray-500">70% lotação</p>
-</div>
-</div>
-<div class="p-3 border rounded-lg flex items-center gap-3 cursor-pointer hover:bg-gray-50" onclick="showBusDetails(1235)">
-<div class="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center">
-<i class="ri-bus-line text-yellow-500"></i>
-</div>
-<div class="flex-1">
-<h3 class="font-medium">Autocarro #1235</h3>
-<p class="text-sm text-gray-500">Linha 2 - Parado</p>
-</div>
-<div class="text-right">
-<span class="text-yellow-500 text-sm">0 km/h</span>
-<p class="text-xs text-gray-500">30% lotação</p>
-</div>
-</div>
-<div class="p-3 border rounded-lg flex items-center gap-3 cursor-pointer hover:bg-gray-50" onclick="showBusDetails(1236)">
-<div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center">
-<i class="ri-bus-line text-red-500"></i>
-</div>
-<div class="flex-1">
-<h3 class="font-medium">Autocarro #1236</h3>
-<p class="text-sm text-gray-500">Linha 3 - Manutenção</p>
-</div>
-<div class="text-right">
-<span class="text-red-500 text-sm">Em reparo</span>
-<p class="text-xs text-gray-500">Indisponível</p>
-</div>
-</div>
-</div>
-<div id="busDetailsModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-<div class="bg-white rounded-lg w-[480px] shadow-xl">
-<div class="p-6 border-b flex justify-between items-center">
-<h3 class="text-xl font-semibold">Detalhes do Autocarro</h3>
-<button onclick="closeBusDetails()" class="text-gray-500 hover:text-gray-700">
-<i class="ri-close-line text-xl"></i>
-</button>
-</div>
+<div id="busDetailsModal" class="bg-white rounded-lg shadow-sm p-4">
 <div class="p-6 space-y-4">
 <div class="grid grid-cols-2 gap-4">
 <div class="space-y-2">
@@ -369,6 +319,115 @@ Marcar todas como lidas
 </div>
 </div>
 </div>
+<div class="w-80 flex flex-col gap-4">
+<div class="bg-white rounded-lg shadow-sm p-4">
+<h2 class="text-lg font-semibold mb-4">Monitoramento em Tempo Real</h2>
+<div class="space-y-4 custom-scrollbar max-h-[400px] overflow-y-auto" style="transition: all 0.3s ease-in-out">
+<div class="p-3 border rounded-lg flex items-center gap-3 cursor-pointer hover:bg-gray-50" onclick="showBusDetails(1)">
+<div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+<i class="ri-bus-line text-green-500"></i>
+</div>
+<div class="flex-1">
+<h3 class="font-medium">Autocarro #1</h3>
+<p class="text-sm text-gray-500">Linha 1 - Em movimento</p>
+</div>
+<div class="text-right">
+<span class="text-green-500 text-sm">40 km/h</span>
+<p class="text-xs text-gray-500">70% lotação</p>
+</div>
+</div>
+<div class="p-3 border rounded-lg flex items-center gap-3 cursor-pointer hover:bg-gray-50" onclick="showBusDetails(2)">
+<div class="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center">
+<i class="ri-bus-line text-yellow-500"></i>
+</div>
+<div class="flex-1">
+<h3 class="font-medium">Autocarro #2</h3>
+<p class="text-sm text-gray-500">Linha 2 - Parado</p>
+</div>
+<div class="text-right">
+<span class="text-yellow-500 text-sm">0 km/h</span>
+<p class="text-xs text-gray-500">30% lotação</p>
+</div>
+</div>
+<div class="p-3 border rounded-lg flex items-center gap-3 cursor-pointer hover:bg-gray-50" onclick="showBusDetails(3)">
+<div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center">
+<i class="ri-bus-line text-red-500"></i>
+</div>
+<div class="flex-1">
+<h3 class="font-medium">Autocarro #3</h3>
+<p class="text-sm text-gray-500">Linha 3 - Manutenção</p>
+</div>
+<div class="text-right">
+<span class="text-red-500 text-sm">Em reparo</span>
+<p class="text-xs text-gray-500">Indisponível</p>
+</div>
+</div>
+<div class="p-3 border rounded-lg flex items-center gap-3 cursor-pointer hover:bg-gray-50" onclick="showBusDetails(4)">
+<div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+<i class="ri-bus-line text-green-500"></i>
+</div>
+<div class="flex-1">
+<h3 class="font-medium">Autocarro #4</h3>
+<p class="text-sm text-gray-500">Linha 1 - Em movimento</p>
+</div>
+<div class="text-right">
+<span class="text-green-500 text-sm">35 km/h</span>
+<p class="text-xs text-gray-500">85% lotação</p>
+</div>
+</div>
+<div class="p-3 border rounded-lg flex items-center gap-3 cursor-pointer hover:bg-gray-50" onclick="showBusDetails(5)">
+<div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+<i class="ri-bus-line text-green-500"></i>
+</div>
+<div class="flex-1">
+<h3 class="font-medium">Autocarro #5</h3>
+<p class="text-sm text-gray-500">Linha 2 - Em movimento</p>
+</div>
+<div class="text-right">
+<span class="text-green-500 text-sm">42 km/h</span>
+<p class="text-xs text-gray-500">55% lotação</p>
+</div>
+</div>
+<div class="p-3 border rounded-lg flex items-center gap-3 cursor-pointer hover:bg-gray-50" onclick="showBusDetails(6)">
+<div class="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center">
+<i class="ri-bus-line text-yellow-500"></i>
+</div>
+<div class="flex-1">
+<h3 class="font-medium">Autocarro #6</h3>
+<p class="text-sm text-gray-500">Linha 3 - Parado</p>
+</div>
+<div class="text-right">
+<span class="text-yellow-500 text-sm">0 km/h</span>
+<p class="text-xs text-gray-500">45% lotação</p>
+</div>
+</div>
+<div class="p-3 border rounded-lg flex items-center gap-3 cursor-pointer hover:bg-gray-50" onclick="showBusDetails(7)">
+<div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+<i class="ri-bus-line text-green-500"></i>
+</div>
+<div class="flex-1">
+<h3 class="font-medium">Autocarro #7</h3>
+<p class="text-sm text-gray-500">Linha 1 - Em movimento</p>
+</div>
+<div class="text-right">
+<span class="text-green-500 text-sm">38 km/h</span>
+<p class="text-xs text-gray-500">65% lotação</p>
+</div>
+</div>
+<div class="p-3 border rounded-lg flex items-center gap-3 cursor-pointer hover:bg-gray-50" onclick="showBusDetails(8)">
+<div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center">
+<i class="ri-bus-line text-red-500"></i>
+</div>
+<div class="flex-1">
+<h3 class="font-medium">Autocarro #8</h3>
+<p class="text-sm text-gray-500">Linha 2 - Manutenção</p>
+</div>
+<div class="text-right">
+<span class="text-red-500 text-sm">Em reparo</span>
+<p class="text-xs text-gray-500">Indisponível</p>
+</div>
+</div>
+</div>
 </div>
 <div class="bg-white rounded-lg shadow-sm p-4">
 <h2 class="text-lg font-semibold mb-4">Dados Técnicos</h2>
@@ -410,8 +469,34 @@ Marcar todas como lidas
 .map-view-btn {
 transition: all 0.3s ease;
 }
+.map-view-btn:hover {
+transform: translateY(-1px);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 .map-container {
 transition: opacity 0.3s ease;
+position: relative;
+}
+button:hover {
+transform: translateY(-1px);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+transition: all 0.3s ease;
+}
+button:active {
+transform: translateY(0);
+}
+.bus-marker {
+transition: all 0.3s ease;
+}
+.bus-marker:hover {
+transform: scale(1.1) translateY(-4px);
+}
+@keyframes bounce {
+0%, 100% { transform: translateY(0); }
+50% { transform: translateY(-4px); }
+}
+.animate-bounce {
+animation: bounce 2s infinite;
 }
 </style>
 <script>
@@ -439,7 +524,7 @@ mapContainer.style.opacity = '1';
 }
 const mockBusData = [
 {
-id: 1234,
+id: 1,
 line: 1,
 status: 'Em movimento',
 speed: 40,
@@ -453,7 +538,7 @@ batteryLevel: 90,
 engineTemp: 75
 },
 {
-id: 1235,
+id: 2,
 line: 2,
 status: 'Parado',
 speed: 0,
@@ -467,7 +552,7 @@ batteryLevel: 65,
 engineTemp: 50
 },
 {
-id: 1236,
+id: 3,
 line: 3,
 status: 'Manutenção',
 speed: 0,
@@ -479,11 +564,82 @@ nextMaintenance: '2025-05-05',
 fuelLevel: 20,
 batteryLevel: 30,
 engineTemp: 85
+},
+{
+id: 4,
+line: 1,
+status: 'Em movimento',
+speed: 35,
+capacity: 85,
+internalTemp: 23,
+mileage: 38921,
+lastMaintenance: '2025-02-20',
+nextMaintenance: '2025-04-20',
+fuelLevel: 92,
+batteryLevel: 95,
+engineTemp: 72
+},
+{
+id: 5,
+line: 2,
+status: 'Em movimento',
+speed: 42,
+capacity: 55,
+internalTemp: 21,
+mileage: 51234,
+lastMaintenance: '2025-02-25',
+nextMaintenance: '2025-04-25',
+fuelLevel: 78,
+batteryLevel: 82,
+engineTemp: 68
+},
+{
+id: 6,
+line: 3,
+status: 'Parado',
+speed: 0,
+capacity: 45,
+internalTemp: 19,
+mileage: 62378,
+lastMaintenance: '2025-03-01',
+nextMaintenance: '2025-05-01',
+fuelLevel: 35,
+batteryLevel: 58,
+engineTemp: 45
+},
+{
+id: 7,
+line: 1,
+status: 'Em movimento',
+speed: 38,
+capacity: 65,
+internalTemp: 22,
+mileage: 41567,
+lastMaintenance: '2025-02-18',
+nextMaintenance: '2025-04-18',
+fuelLevel: 88,
+batteryLevel: 87,
+engineTemp: 70
+},
+{
+id: 8,
+line: 2,
+status: 'Manutenção',
+speed: 0,
+capacity: 0,
+internalTemp: 17,
+mileage: 89234,
+lastMaintenance: '2025-03-06',
+nextMaintenance: '2025-05-06',
+fuelLevel: 15,
+batteryLevel: 25,
+engineTemp: 88
 }
 ];
 function showBusDetails(busId) {
 const bus = mockBusData.find(b => b.id === busId);
 if (!bus) return;
+// Update bus details modal
 document.getElementById('busTemp').textContent = `${bus.internalTemp}°C`;
 document.getElementById('busMileage').textContent = `${bus.mileage} km`;
 document.getElementById('busLastMaintenance').textContent = new Date(bus.lastMaintenance).toLocaleDateString();
@@ -494,10 +650,44 @@ document.getElementById('busBatteryLevel').textContent = `${bus.batteryLevel}%`;
 document.getElementById('busBatteryBar').style.width = `${bus.batteryLevel}%`;
 document.getElementById('busEngineTemp').textContent = `${bus.engineTemp}°C`;
 document.getElementById('busEngineTempBar').style.width = `${bus.engineTemp}%`;
-document.getElementById('busDetailsModal').classList.remove('hidden');
+// Show bus location on map
+const mapContainer = document.querySelector('.map-container');
+const existingMarker = document.querySelector('.bus-marker');
+if (existingMarker) {
+existingMarker.remove();
+}
+const marker = document.createElement('div');
+marker.className = 'bus-marker absolute w-8 h-8 -ml-4 -mt-4 bg-primary rounded-full border-2 border-white shadow-lg flex items-center justify-center z-10 animate-bounce';
+marker.innerHTML = `<i class="ri-bus-line text-white"></i>`;
+// Random position for demo
+const left = Math.random() * 80 + 10; // 10% to 90%
+const top = Math.random() * 80 + 10; // 10% to 90%
+marker.style.left = `${left}%`;
+marker.style.top = `${top}%`;
+mapContainer.appendChild(marker);
+// Add tooltip
+const tooltip = document.createElement('div');
+tooltip.className = 'absolute -mt-12 left-1/2 -translate-x-1/2 bg-black bg-opacity-75 text-white text-xs py-1 px-2 rounded whitespace-nowrap';
+tooltip.textContent = `Autocarro #${bus.id} - ${bus.status}`;
+marker.appendChild(tooltip);
+// Highlight selected bus in list
+const busElements = document.querySelectorAll('.space-y-4.custom-scrollbar > div');
+busElements.forEach(el => {
+el.classList.remove('ring-2', 'ring-primary');
+if (el.querySelector('h3').textContent.includes(`#${bus.id}`)) {
+el.classList.add('ring-2', 'ring-primary');
+}
+});
 }
 function closeBusDetails() {
-document.getElementById('busDetailsModal').classList.add('hidden');
+const marker = document.querySelector('.bus-marker');
+if (marker) {
+marker.remove();
+}
+const busElements = document.querySelectorAll('.space-y-4.custom-scrollbar > div');
+busElements.forEach(el => {
+el.classList.remove('ring-2', 'ring-primary');
+});
 }
 const mockTechnicalData = {
 fuelConsumption: 3.8,
@@ -510,6 +700,27 @@ const mockNotifications = [
 {type: 'alert', message: 'Atraso na Linha 2 - 10 minutos'},
 {type: 'info', message: 'Condições de tráfego: Congestionamento na Av. Principal'}
 ];
+function searchBus(value) {
+const busElements = document.querySelectorAll('.space-y-4.custom-scrollbar > div');
+busElements.forEach(busElement => {
+const busNumber = busElement.querySelector('h3').textContent.split('#')[1];
+if (value === '') {
+busElement.style.display = 'flex';
+busElement.style.opacity = '1';
+} else if (busNumber === value) {
+busElement.style.display = 'flex';
+busElement.style.opacity = '0';
+setTimeout(() => {
+busElement.style.opacity = '1';
+}, 50);
+} else {
+busElement.style.opacity = '0';
+setTimeout(() => {
+busElement.style.display = 'none';
+}, 300);
+}
+});
+}
 function toggleBusLine(checkbox) {
 const lineNumber = checkbox.dataset.line;
 const busElements = document.querySelectorAll('.space-y-4.custom-scrollbar > div');
